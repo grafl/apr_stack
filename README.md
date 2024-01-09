@@ -3,8 +3,8 @@ A minimalistic implementation of a stack, written in
 [C](https://en.wikipedia.org/wiki/C_(programming_language)), 
 using [APR](https://apr.apache.org/).
 
-[!WARNING]
-Currently, this implementation handles **ONLY** integer numbers as payload.
+> [!WARNING]
+> Currently, this implementation handles **ONLY** integer numbers as payload.
 
 ### Architecture
 This implementation is based on a [linked list](https://en.wikipedia.org/wiki/Linked_list) 
@@ -81,9 +81,9 @@ apr_pool_t *mp;
 apr_pool_create(&mp, NULL);
 ```
 
-[!TIP]
-Because APR allows you to define (thread-safely) sub-pools, is indicated to organize your logic
-in functions (methods) what will get and use a dedicated memory pool. See [here](https://apr.apache.org/docs/apr/1.7/group__apr__pools.html#ga918adf3026c894efeae254a0446aed3b).
+> [!TIP]
+> Because APR allows you to define (thread-safely) sub-pools, is indicated to organize your logic
+> in functions (methods) what will get and use a dedicated memory pool. See [here](https://apr.apache.org/docs/apr/1.7/group__apr__pools.html#ga918adf3026c894efeae254a0446aed3b).
 
 
 At the end of your perambulation in the world of **apr_stack**, you **MUST** free
