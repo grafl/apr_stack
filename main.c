@@ -5,14 +5,7 @@
  *      LD_LIBRARY_PATH=lib bin/main
  */
 int main(int argc, const char *argv[]) {
-    apr_status_t rv;
     apr_pool_t *mp;
-
-    /* per-process initialization */
-    rv = apr_initialize();
-    if (rv != APR_SUCCESS) {
-        return -1;
-    }
 
     /* create a memory pool. */
     apr_pool_create(&mp, NULL);
@@ -35,8 +28,5 @@ int main(int argc, const char *argv[]) {
 
     /* destroy the memory pool. These chunks above are freed by this */
     apr_pool_destroy(mp);
-
-    /* tear down any APR internal data structures */
-    apr_terminate();
     return 0;
 }

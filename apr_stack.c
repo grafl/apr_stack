@@ -1,5 +1,14 @@
 #include "apr_stack.h"
 
+__attribute__((constructor)) void init(void) {
+    /* The setup of APR internal data structures */
+    apr_status_t rv;
+    rv = apr_initialize();
+    if (rv != APR_SUCCESS) {
+        printf("The setup of APR internal data structures failed.\n");
+    }
+}
+
 APR_DECLARE(apr_stack_node_t*) apr_stack_create(apr_pool_t *mp, const int value) {
     apr_stack_node_t* node = apr_pcalloc(mp, sizeof(apr_stack_node_t));
     node->value = value;
@@ -42,4 +51,9 @@ APR_DECLARE(void) apr_stack_print(apr_stack_node_t *stack) {
         temporary = temporary->next;
     }
     printf(" }\n");
+}
+
+__attribute__((destructor))  void fini(void) {
+    /* tear down any APR internal data structures */
+    apr_terminate();
 }
